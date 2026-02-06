@@ -1,4 +1,4 @@
-const BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+const BASE_URL = process.env.REACT_APP_API_URL || "https://money-manager-backend-kgp2.onrender.com";
 
 async function apiFetch(path, options = {}) {
   const url = path.startsWith("http") ? path : `${BASE_URL}${path}`;
