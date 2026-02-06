@@ -1,0 +1,763 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Professional Blue & White Theme - Matching Reports Page */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  @apply bg-gradient-to-br from-blue-50 via-cyan-50 to-blue-50 text-gray-800 antialiased;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  transition: background-color 0.3s ease;
+  letter-spacing: 0.3px;
+}
+
+/* Prevent layout shift when scroll is hidden */
+body {
+  scrollbar-gutter: stable;
+}
+
+.app-container {
+  @apply px-0 sm:px-0 lg:px-0 pt-0 pb-8 min-h-screen w-full bg-cyan-400;
+}
+
+/* Header Styling */
+.app-header {
+  @apply mb-12 pb-8 sticky top-0 z-40 bg-cyan-500 text-white px-4 sm:px-8 lg:px-12 py-6 transition-all duration-300 w-full shadow-xl;
+}
+
+.app-header h1 {
+  @apply text-3xl sm:text-4xl font-bold text-white tracking-tight;
+  letter-spacing: -0.5px;
+}
+
+.app-header p {
+  @apply text-white text-opacity-90 text-xs sm:text-sm mt-2 font-medium;
+}
+
+/* Main Content Area */
+main {
+  @apply pb-48 space-y-6 px-4 sm:px-8 lg:px-12;
+}
+
+/* Card Styling - Clean & Professional */
+.card {
+  @apply bg-white rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 p-6 border border-gray-300 relative overflow-hidden;
+}
+
+.card:hover {
+  @apply border-gray-400 shadow-2xl;
+}
+
+/* Color-Coded Cards */
+.card-income {
+  @apply bg-white rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 p-6 border-2 border-emerald-500 relative overflow-hidden;
+}
+
+.card-income::before {
+  content: '';
+  @apply absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-400 to-emerald-500 transition-all duration-500;
+}
+
+.card-expense {
+  @apply bg-white rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 p-6 border-2 border-rose-500 relative overflow-hidden;
+}
+
+.card-expense::before {
+  content: '';
+  @apply absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-rose-400 to-rose-500 transition-all duration-500;
+}
+
+.card-balance {
+  @apply bg-white rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 p-6 border-2 border-cyan-400 relative overflow-hidden;
+}
+
+.card-balance::before {
+  content: '';
+  @apply absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-300 to-cyan-400 transition-all duration-500;
+}
+
+/* Section Cards - Clean & Light */
+.section-card {
+  @apply rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 pt-6 px-4 pb-6 border border-gray-300 relative overflow-hidden;
+  background-color: #f3f4f6 !important;
+  padding: 1rem;/* 24px */
+}
+
+.section-header {
+  @apply text-3xl sm:text-4xl font-bold mb-6 pb-4 text-black dark:text-gray-100 border-b-2 border-gray-300 dark:border-gray-600;
+  letter-spacing: -0.3px;
+}
+
+/* Buttons - Blue Theme */
+.btn-primary {
+  @apply bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-5 py-2.5 rounded-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden;
+}
+
+.btn-golden {
+  @apply bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 text-white px-5 py-2.5 rounded-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden;
+}
+
+.btn-secondary {
+  @apply bg-slate-700 hover:bg-slate-600 text-white px-5 py-2.5 rounded-lg font-bold shadow-md hover:shadow-lg transition-all duration-300 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed border border-slate-600;
+}
+
+.btn-danger {
+  @apply bg-rose-600 hover:bg-rose-700 text-white px-5 py-2.5 rounded-lg font-bold shadow-md hover:shadow-lg transition-all duration-300 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.btn-add {
+  @apply bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white px-5 py-2.5 rounded-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.btn-ghost {
+  @apply text-white px-6 py-4 rounded-lg font-bold transition-all duration-300 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed text-2xl;
+}
+
+/* Form Inputs */
+.form-input {
+  @apply border-2 border-gray-400 bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-300 focus:ring-opacity-30 p-2.5 rounded-lg transition-all duration-200 w-full text-black placeholder-gray-600;
+}
+
+input[type="date"],
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+  @apply border-2 border-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-300 focus:ring-opacity-30 p-2.5 rounded-lg transition-all duration-200 w-full placeholder-gray-600;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+select {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+/* Style select options */
+select > option {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+}
+
+select option {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+}
+
+select:focus, 
+select:active {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+input:disabled,
+select:disabled,
+textarea:disabled {
+  @apply opacity-50 cursor-not-allowed bg-gray-200;
+}
+
+/* Tables */
+table {
+  @apply w-full border-collapse rounded-xl overflow-hidden;
+}
+
+th {
+  @apply bg-blue-500 text-white font-semibold text-sm uppercase tracking-wider p-3 border-b-2 border-blue-600;
+}
+
+td {
+  @apply border-b border-gray-300 px-4 py-3 text-sm text-gray-800;
+}
+
+tr:hover {
+  @apply bg-gray-100 transition-colors duration-200;
+}
+
+/* Link styling */
+a {
+  @apply text-blue-300 hover:text-blue-200 transition-colors duration-200 font-medium;
+}
+
+a:focus-visible {
+  @apply outline-none ring-2 ring-blue-300 rounded px-1;
+}
+
+/* Text utilities */
+.text-header {
+  @apply text-2xl font-bold text-white;
+}
+
+.text-subheader {
+  @apply text-lg font-bold text-white;
+}
+
+.text-muted {
+  @apply text-sm text-slate-300;
+}
+
+/* Divider */
+.divider {
+  @apply border-t-2 border-gray-200 my-6;
+}
+
+/* Modal Styles - Elegant & Prominent */
+.modal-box {
+  @apply bg-white rounded-3xl p-6 w-96 shadow-2xl border border-gray-300 relative overflow-hidden dark:bg-gradient-to-br dark:from-gray-800 dark:to-gray-900 dark:border-gray-700;
+}
+
+.modal-box::before {
+  content: '';
+  @apply absolute -top-1 -left-1 w-1/2 h-32 bg-gradient-to-br from-blue-400/20 to-transparent rounded-full blur-xl pointer-events-none;
+}
+
+/* Bottom sheet (WhatsApp-style) */
+.bottom-sheet-overlay {
+  @apply fixed inset-0 bg-black/40 backdrop-blur-lg z-40 flex items-center justify-center;
+}
+
+.bottom-sheet {
+  @apply fixed left-0 right-0 bottom-0 mx-4 z-50 bg-white rounded-t-3xl shadow-2xl p-4 max-h-[90vh] overflow-auto transform transition-transform duration-300 ease-out max-w-lg border-t-2 border-gray-300 dark:bg-gradient-to-br dark:from-gray-800 dark:via-gray-800 dark:to-gray-900 dark:border-gray-700;
+}
+
+.bottom-sheet-hidden {
+  transform: translateY(100%);
+}
+
+.bottom-sheet-open {
+  transform: translateY(0%);
+}
+
+.bottom-action-bar {
+  @apply sticky bottom-0 bg-white py-3 px-4 border-t-2 border-gray-300 dark:bg-gradient-to-b dark:from-gray-800 dark:to-gray-900 dark:border-gray-700;
+}
+
+/* Centered modal window for larger screens */
+.modal-window {
+  @apply relative bg-white rounded-3xl shadow-2xl p-6 max-w-lg w-full mx-auto mt-12 mb-12 overflow-auto max-h-[80vh] border-2 border-gray-300 dark:bg-gradient-to-br dark:from-gray-800 dark:to-gray-900 dark:border-gray-700;
+}
+
+.modal-window .form-input {
+  @apply bg-white border-2 border-gray-400 text-black placeholder-gray-600;
+}
+
+/* Layout utilities */
+.column-section {
+  @apply flex flex-col gap-6;
+}
+
+.grid-cols-2-responsive {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+}
+
+.grid-cols-3-responsive {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+/* Consistent Section Spacing */
+.section-spacing {
+  @apply space-y-6;
+}
+
+.section-gap-horizontal {
+  @apply gap-6;
+}
+
+/* Section Dividers */
+.section-divider {
+  @apply my-6 border-t-2 border-gray-300;
+}
+
+/* Legacy utilities */
+.input {
+  @apply border border-gray-300 p-2 rounded-lg w-full mb-2 text-black;
+}
+
+.btn {
+  @apply text-white px-4 py-2 rounded-xl;
+}
+
+.modal {
+  @apply fixed inset-0 bg-black/20 backdrop-blur-sm flex items-center justify-center z-50;
+}
+
+/* Badge styling - Professional */
+.badge {
+  @apply inline-flex items-center justify-center min-w-5 h-5 px-2 py-1 text-xs font-bold bg-gradient-to-r from-rose-500 to-rose-600 text-white rounded-full shadow-md;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Spinner animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Professional focus styles for accessibility */
+:focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3);
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+
+/* Smooth animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Card hover effects */
+.card-hover {
+  @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+}
+
+/* ========== DARK MODE STYLES ========== */
+
+/* Dark mode - Root level changes */
+.dark {
+  color-scheme: dark;
+}
+
+.dark body {
+  @apply bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-gray-100;
+}
+
+.dark .app-container {
+  @apply bg-gray-900;
+}
+
+.dark .app-header {
+  @apply bg-gray-800 text-white shadow-2xl border-b border-gray-700;
+}
+
+.dark .app-header h1,
+.dark .app-header p {
+  @apply text-white;
+}
+
+.dark main {
+  @apply text-gray-100;
+}
+
+/* Dark mode - Cards */
+.dark .card {
+  @apply bg-gray-800 text-gray-100 border-gray-700 shadow-lg;
+}
+
+.dark .card:hover {
+  @apply bg-gray-700 border-gray-600 shadow-xl;
+}
+
+.dark .card-income {
+  @apply bg-gray-800 border-emerald-600 text-gray-100;
+}
+
+.dark .card-expense {
+  @apply bg-gray-800 border-rose-600 text-gray-100;
+}
+
+.dark .card-balance {
+  @apply bg-gray-800 border-cyan-600 text-gray-100;
+}
+
+.dark .section-card {
+  @apply border-gray-700 text-gray-100;
+  background-color: #4b5563 !important;
+}
+
+.dark .section-header {
+  @apply text-gray-100 border-gray-600;
+}
+
+/* Dark mode - Buttons */
+.dark .btn-primary {
+  @apply bg-blue-600 hover:bg-blue-700;
+}
+
+.dark .btn-secondary {
+  @apply bg-gray-700 hover:bg-gray-600 border-gray-600 text-gray-100;
+}
+
+.dark .btn-golden {
+  @apply bg-amber-600 hover:bg-amber-700;
+}
+
+.dark .btn-danger {
+  @apply bg-red-700 hover:bg-red-800;
+}
+
+.dark .btn-add {
+  @apply bg-emerald-600 hover:bg-emerald-700;
+}
+
+.dark .btn-ghost {
+  @apply text-gray-100 hover:text-white;
+}
+
+/* Dark mode - Form inputs */
+.dark .form-input,
+.dark input[type="date"],
+.dark input[type="text"],
+.dark input[type="number"],
+.dark select,
+.dark textarea {
+  @apply border-gray-600 bg-gray-700 text-gray-100 placeholder-gray-400;
+}
+
+/* Force dark background for inputs in dark mode */
+.dark input[type="text"],
+.dark input[type="password"],
+.dark input[type="email"],
+.dark input[type="number"],
+.dark input[type="date"],
+.dark textarea,
+.dark select {
+  background-color: #374151 !important;
+  color: #ffffff !important;
+}
+
+.dark input[type="date"]:focus,
+.dark input[type="text"]:focus,
+.dark input[type="number"]:focus,
+.dark select:focus,
+.dark textarea:focus {
+  @apply border-blue-500 focus:ring-blue-400;
+}
+
+.dark select {
+  background-color: #374151 !important;
+  color: #ffffff !important;
+}
+
+.dark select > option {
+  color: #ffffff !important;
+  background-color: #374151 !important;
+}
+
+.dark select option {
+  color: #ffffff !important;
+  background-color: #374151 !important;
+}
+
+.dark input:disabled,
+.dark select:disabled,
+.dark textarea:disabled {
+  @apply bg-gray-600 border-gray-600 text-gray-500;
+}
+
+/* Dark mode - Tables */
+.dark table {
+  @apply border-gray-700;
+}
+
+.dark th {
+  @apply bg-gray-700 text-white border-gray-600;
+}
+
+.dark td {
+  @apply border-gray-700 text-gray-200;
+}
+
+.dark tr:hover {
+  @apply bg-gray-700;
+}
+
+/* Dark mode - Links */
+.dark a {
+  @apply text-blue-400 hover:text-blue-300;
+}
+
+/* Dark mode - Modals */
+.dark .modal-box {
+  @apply bg-gradient-to-br from-gray-800 to-gray-900 border-gray-700 text-gray-100;
+}
+
+.dark .modal {
+  @apply bg-black/60;
+}
+
+.dark .bottom-sheet {
+  @apply bg-gradient-to-br from-gray-800 via-gray-800 to-gray-900 border-gray-700 text-gray-100;
+}
+
+.dark .bottom-sheet-overlay {
+  @apply bg-black/70;
+}
+
+.dark .bottom-action-bar {
+  @apply bg-gradient-to-b from-gray-800 to-gray-900 border-gray-700 text-gray-100;
+}
+
+.dark .modal-window {
+  @apply bg-gradient-to-br from-gray-800 to-gray-900 border-gray-700 text-gray-100;
+}
+
+.dark .modal-window .form-input {
+  @apply bg-gray-700 border-gray-600 text-gray-100 placeholder-gray-400;
+}
+
+/* Dark mode - Dividers */
+.dark .divider,
+.dark .section-divider {
+  @apply border-gray-700;
+}
+
+/* Dark mode - Badge */
+.dark .badge {
+  @apply bg-gradient-to-r from-rose-700 to-rose-800;
+}
+
+/* Dark mode - Text utilities */
+.dark .text-header,
+.dark .text-subheader {
+  @apply text-gray-100;
+}
+
+.dark .text-muted {
+  @apply text-gray-400;
+}
+
+/* Dark mode - Text utilities */
+.dark .text-black {
+  @apply text-white !important;
+}
+
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+  @apply text-gray-100;
+}
+
+.dark label {
+  @apply text-gray-200;
+}
+
+.dark p {
+  @apply text-gray-200;
+}
+
+.dark span {
+  @apply text-gray-200;
+}
+
+.dark small {
+  @apply text-gray-400;
+}
+
+.dark .text-gray-600 {
+  @apply text-gray-400;
+}
+
+.dark .text-gray-700 {
+  @apply text-gray-300;
+}
+
+.dark .text-gray-800 {
+  @apply text-gray-200;
+}
+
+.dark .text-gray-900 {
+  @apply text-gray-100;
+}
+
+.dark .text-black {
+  @apply text-gray-100;
+}
+
+/* Additional text color fixes for dark mode */
+.dark .text-black,
+.dark [style*="color: #000000"],
+.dark [style*="color:#000000"] {
+  color: #e5e7eb !important;
+}
+
+.dark .bg-white {
+  @apply bg-gray-800;
+}
+
+.dark .bg-gray-100 {
+  @apply bg-gray-700;
+}
+
+.dark .bg-gray-200 {
+  @apply bg-gray-800;
+}
+
+.dark .bg-gray-300 {
+  @apply bg-gray-700;
+}
+
+.dark .border-gray-300 {
+  @apply border-gray-700;
+}
+
+.dark .border-gray-400 {
+  @apply border-gray-600;
+}
+
+.dark .border-gray-200 {
+  @apply border-gray-700;
+}
+
+/* Fix gray-600 text in dark mode */
+.dark .text-gray-600 {
+  @apply text-gray-300;
+}
+
+/* Additional styles for better dark mode visibility */
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6,
+.dark p,
+.dark span,
+.dark a,
+.dark label,
+.dark div {
+  @apply text-gray-100;
+}
+
+/* Specific dark mode fixes for hardcoded styles */
+.dark .text-black {
+  @apply text-white;
+}
+
+.dark .font-bold.text-black {
+  @apply text-white;
+}
+
+/* Dark mode - Scrollbar */
+.dark ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.dark ::-webkit-scrollbar-track {
+  @apply bg-gray-800;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  @apply bg-gray-600 rounded;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-500;
+}
+
+/* Additional text color conversions for dark mode */
+.dark .text-rose-600,
+.dark .text-rose-700 {
+  @apply text-rose-400;
+}
+
+.dark .text-emerald-600,
+.dark .text-emerald-700 {
+  @apply text-emerald-400;
+}
+
+.dark .text-blue-900 {
+  @apply text-blue-300;
+}
+
+.dark .text-gray-600 {
+  @apply text-gray-300;
+}
+
+.dark .text-gray-700 {
+  @apply text-gray-300;
+}
+
+.dark .text-gray-800 {
+  @apply text-gray-200;
+}
+
+.dark .text-gray-900 {
+  @apply text-gray-100;
+}
+
+/* Responsive utilities */
+@media (max-width: 640px) {
+  .app-container {
+    @apply p-4;
+  }
+  .grid-cols-3 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+  main {
+    @apply space-y-4;
+  }
+  .grid-cols-3-responsive,
+  .grid-cols-2-responsive {
+    @apply gap-4;
+  }
+}
+
+/* Ensure text-black is always visible in light mode */
+.text-black {
+  color: #000000;
+}
+
+.dark .text-black {
+  color: #ffffff;
+}
+
+.font-semibold.text-black,
+.font-bold.text-black {
+  color: #000000;
+}
+
+.dark .font-semibold.text-black,
+.dark .font-bold.text-black {
+  color: #ffffff;
+}
+
+/* Device session cards - ensure white background in light mode */
+.bg-white.dark\:bg-gray-600,
+[className*="bg-white"][className*="dark:bg-gray-600"] {
+  background-color: #ffffff !important;
+}
+
+.bg-white.dark\:bg-gray-600 .font-bold,
+.bg-white.dark\:bg-gray-600 .text-xs {
+  color: #000000 !important;
+}
+
