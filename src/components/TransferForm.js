@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { getAPIUrl } from "../config";
 
 export default function TransferForm({ refresh }) {
   const [accounts, setAccounts] = useState([]);
@@ -9,7 +10,7 @@ export default function TransferForm({ refresh }) {
   const fetchAccounts = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch("http://localhost:5000/accounts", {
+      const res = await fetch(getAPIUrl("/accounts"), {
         headers: { Authorization: token ? `Bearer ${token}` : "" }
       });
       if (!res.ok) throw new Error("Failed to fetch accounts");
@@ -43,7 +44,7 @@ export default function TransferForm({ refresh }) {
 
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch("http://localhost:5000/accounts/transfer", {
+      const res = await fetch(getAPIUrl("/accounts/transfer"), {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify({ from, to, amount: value }),

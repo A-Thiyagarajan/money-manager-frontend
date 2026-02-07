@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useMemo, useRef } from "react";
 import { PieChart, Pie, Cell, Tooltip, BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from "recharts";
+import { getAPIUrl } from "../config";
 
 const COLORS = ["#16a34a", "#dc2626", "#f59e0b", "#06b6d4", "#7c3aed", "#ef4444"];
 
@@ -50,7 +51,7 @@ function Charts({ transactions = [] }) {
   const fetchChart = useMemo(() => {
     return async (type) => {
       try {
-        const res = await fetch(`http://localhost:5000/stats/chart?type=${type}`, { headers: { Authorization: `Bearer ${token}` } });
+        const res = await fetch(getAPIUrl(`/stats/chart?type=${type}`), { headers: { Authorization: `Bearer ${token}` } });
         if (!res.ok) return;
         const d = await res.json();
         if (d && d.success) setChartData({ labels: d.labels || [], data: d.data || [] });

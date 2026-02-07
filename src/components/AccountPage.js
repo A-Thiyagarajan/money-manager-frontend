@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { getAPIUrl } from "../config";
 
 export default function AccountPage({ onClose, dark, setDark, onLogout }) {
   const username = localStorage.getItem("username");
@@ -22,7 +23,7 @@ export default function AccountPage({ onClose, dark, setDark, onLogout }) {
     const fetchSessions = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await fetch('http://localhost:5000/sessions', { headers: { Authorization: `Bearer ${token}` } });
+        const res = await fetch(getAPIUrl('/sessions'), { headers: { Authorization: `Bearer ${token}` } });
         const data = await res.json();
         if (data && data.sessions) setSessions(data.sessions);
       } catch (e) { console.error(e); }
@@ -30,7 +31,7 @@ export default function AccountPage({ onClose, dark, setDark, onLogout }) {
     const fetchBills = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await fetch('http://localhost:5000/reminders', { headers: { Authorization: `Bearer ${token}` } });
+        const res = await fetch(getAPIUrl('/reminders'), { headers: { Authorization: `Bearer ${token}` } });
         const data = await res.json();
         if (data && data.reminders) setBills(data.reminders);
       } catch (e) { console.error(e); }
@@ -38,7 +39,7 @@ export default function AccountPage({ onClose, dark, setDark, onLogout }) {
     const fetchAccounts = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await fetch('http://localhost:5000/accounts', { headers: { Authorization: `Bearer ${token}` } });
+        const res = await fetch(getAPIUrl('/accounts'), { headers: { Authorization: `Bearer ${token}` } });
         const data = await res.json();
         setAccounts(Array.isArray(data) ? data : []);
       } catch (e) { console.error(e); }
@@ -80,7 +81,7 @@ export default function AccountPage({ onClose, dark, setDark, onLogout }) {
   const logoutSession = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      await fetch(`http://localhost:5000/sessions/${id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } });
+      await fetch(getAPIUrl(`/sessions/${id}`), { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } });
       setSessions(s => s.filter(x => x.sessionId !== id));
     } catch (e) { console.error(e); }
   };
@@ -88,7 +89,7 @@ export default function AccountPage({ onClose, dark, setDark, onLogout }) {
   const logoutAll = async () => {
     try {
       const token = localStorage.getItem('token');
-      await fetch('http://localhost:5000/sessions', { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } });
+      await fetch(getAPIUrl('/sessions'), { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } });
       setSessions([]);
       onLogout();
     } catch (e) { console.error(e); }
@@ -101,7 +102,7 @@ export default function AccountPage({ onClose, dark, setDark, onLogout }) {
     }
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:5000/reminders', {
+      const res = await fetch(getAPIUrl('/reminders'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ name: billName, amount: Number(billAmount), dueDate: new Date(billDueDate).toISOString() })
@@ -137,8 +138,8 @@ export default function AccountPage({ onClose, dark, setDark, onLogout }) {
     }
     try {
       const token = localStorage.getItem('token');
-      await fetch(`http://localhost:5000/reminders/${editingBillId}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } });
-      const res = await fetch('http://localhost:5000/reminders', {
+      await fetch(getAPIUrl(`/reminders/${editingBillId}`), { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } });
+      const res = await fetch(getAPIUrl('/reminders'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ name: billName, amount: Number(billAmount), dueDate: new Date(billDueDate).toISOString() })
@@ -163,7 +164,7 @@ export default function AccountPage({ onClose, dark, setDark, onLogout }) {
   const deleteBill = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch(`http://localhost:5000/reminders/${id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } });
+      const res = await fetch(getAPIUrl(`/reminders/${id}`), { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } });
       const data = await res.json();
       if (data.success) {
         setBills(bills.filter(b => b._id !== id));
@@ -194,7 +195,7 @@ export default function AccountPage({ onClose, dark, setDark, onLogout }) {
       if (editingAccountId) {
         // Update existing account
         console.log('Updating account with ID:', editingAccountId);
-        const res = await fetch(`http://localhost:5000/accounts/${editingAccountId}`, {
+        const res = await fetch(getAPIUrl(`/accounts/${editingAccountId}`), {
           method: 'PUT',
           headers: { 
             'Content-Type': 'application/json', 
@@ -241,7 +242,7 @@ export default function AccountPage({ onClose, dark, setDark, onLogout }) {
       } else {
         // Create new account
         console.log('Creating new account');
-        const res = await fetch('http://localhost:5000/accounts/add', {
+        const res = await fetch(getAPIUrl('/accounts/add'), {
           method: 'POST',
           headers: { 
             'Content-Type': 'application/json', 
@@ -322,7 +323,7 @@ export default function AccountPage({ onClose, dark, setDark, onLogout }) {
 
       console.log('Deleting account with ID:', id);
       
-      const res = await fetch(`http://localhost:5000/accounts/${id}`, {
+      const res = await fetch(getAPIUrl(`/accounts/${id}`), {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });

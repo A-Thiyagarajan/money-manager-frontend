@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import apiFetch from "../api";
+import { getAPIUrl } from "../config";
 
 export default function TransactionModal({ isOpen = false, onClose, refresh, applyChange }) {
   const [tab, setTab] = useState("income");
@@ -39,7 +40,7 @@ export default function TransactionModal({ isOpen = false, onClose, refresh, app
     (async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await fetch("http://localhost:5000/accounts", {
+        const res = await fetch(getAPIUrl("/accounts"), {
           headers: { Authorization: token ? `Bearer ${token}` : "" }
         });
         if (!res.ok) return;

@@ -6,6 +6,7 @@ import LoginSignUp from "./components/LoginSignUp";
 import ForgotPassword from "./components/ForgotPassword";
 import Toasts from "./components/Toasts";
 import BillReminders from "./components/BillReminders";
+import { getAPIUrl } from "./config";
 
 // Lazy load heavy components
 const Charts = lazy(() => import("./components/Charts"));
@@ -42,7 +43,7 @@ function App() {
     if (division) params.set("division", division);
     if (account) params.set("account", account);
 
-    const url = `http://localhost:5000/transactions${params.toString() ? `?${params.toString()}` : ""}`;
+    const url = `${getAPIUrl("/transactions")}${params.toString() ? `?${params.toString()}` : ""}`;
     try {
       const res = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
       const data = await res.json();
@@ -115,7 +116,7 @@ function App() {
   const handleLogout = () => {
     // Inform backend to remove current session
     const token = localStorage.getItem('token');
-    fetch('http://localhost:5000/sessions/me', { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } }).catch(()=>{});
+    fetch(getAPIUrl('/sessions/me'), { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } }).catch(()=>{});
 
     localStorage.removeItem("token");
     localStorage.removeItem("username");
@@ -136,7 +137,7 @@ function App() {
         // perform logout due to inactivity
         try {
           const token = localStorage.getItem('token');
-          await fetch('http://localhost:5000/sessions/me', { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } });
+          await fetch(getAPIUrl('/sessions/me'), { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } });
         } catch (e) {}
         localStorage.removeItem('token');
         localStorage.removeItem('username');
@@ -163,8 +164,8 @@ function App() {
       
       // Fetch both in parallel instead of sequentially
       const [notifRes, remindersRes] = await Promise.allSettled([
-        fetch('http://localhost:5000/notifications', { headers: { Authorization: `Bearer ${token}` } }),
-        fetch('http://localhost:5000/reminders', { headers: { Authorization: `Bearer ${token}` } })
+        fetch(getAPIUrl('/notifications'), { headers: { Authorization: `Bearer ${token}` } }),
+        fetch(getAPIUrl('/reminders'), { headers: { Authorization: `Bearer ${token}` } })
       ]);
       
       // Process notifications
@@ -245,7 +246,7 @@ function App() {
       fetchTransactions();
       // Check for due bills and create notifications
       console.log('🔔 Calling check-due endpoint...');
-      fetch('http://localhost:5000/reminders/check-due', {
+      fetch(getAPIUrl('/reminders/check-due'), {
         method: 'POST',
         headers: { 
           Authorization: `Bearer ${token}`,

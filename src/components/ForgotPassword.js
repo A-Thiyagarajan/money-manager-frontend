@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { getAPIUrl } from "../config";
 
 export default function ForgotPassword({ onBack, onPasswordReset }) {
   const [step, setStep] = useState(1); // 1: username, 2: security question, 3: reset password
@@ -18,7 +19,7 @@ export default function ForgotPassword({ onBack, onPasswordReset }) {
     setError("");
 
     try {
-      const res = await fetch("http://localhost:5000/auth/forgot-password", {
+      const res = await fetch(getAPIUrl("/auth/forgot-password"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username })
@@ -47,7 +48,7 @@ export default function ForgotPassword({ onBack, onPasswordReset }) {
     setError("");
 
     try {
-      const res = await fetch("http://localhost:5000/auth/verify-security", {
+      const res = await fetch(getAPIUrl("/auth/verify-security"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, securityAnswer })
@@ -87,7 +88,7 @@ export default function ForgotPassword({ onBack, onPasswordReset }) {
         return;
       }
 
-      const res = await fetch("http://localhost:5000/auth/reset-password", {
+      const res = await fetch(getAPIUrl("/auth/reset-password"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, newPassword, confirmPassword })

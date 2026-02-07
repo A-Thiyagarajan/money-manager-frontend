@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { getAPIUrl } from "../config";
 
 const securityQuestions = [
   "What is your mother's maiden name?",
@@ -74,7 +75,7 @@ export default function LoginSignUp({ onLoginSuccess, onForgotPassword }) {
             securityAnswer: formData.securityAnswer
           };
 
-      const res = await fetch(`http://localhost:5000${endpoint}`, {
+      const res = await fetch(getAPIUrl(endpoint), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
@@ -102,7 +103,7 @@ export default function LoginSignUp({ onLoginSuccess, onForgotPassword }) {
         setTimeout(async () => {
           try {
             const token = data.token;
-            const res = await fetch('http://localhost:5000/notifications', { headers: { Authorization: `Bearer ${token}` } });
+            const res = await fetch(getAPIUrl('/notifications'), { headers: { Authorization: `Bearer ${token}` } });
             let serverNotes = [];
             if (res.ok) {
               const jd = await res.json();

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { getAPIUrl } from "../config";
 
 export default function BillReminders({ refreshTrigger }) {
   const [overdueBills, setOverdueBills] = useState([]);
@@ -17,7 +18,7 @@ export default function BillReminders({ refreshTrigger }) {
         }
         
         // Fetch reminders
-        const remindersRes = await fetch('http://localhost:5000/reminders', {
+        const remindersRes = await fetch(getAPIUrl('/reminders'), {
           headers: { Authorization: `Bearer ${token}` }
         });
         
@@ -140,7 +141,7 @@ export default function BillReminders({ refreshTrigger }) {
             return;
           }
           
-          const remindersRes = await fetch('http://localhost:5000/reminders', {
+          const remindersRes = await fetch(getAPIUrl('/reminders'), {
             headers: { Authorization: `Bearer ${token}` }
           });
           
@@ -229,7 +230,7 @@ export default function BillReminders({ refreshTrigger }) {
         return;
       }
 
-      const deleteRes = await fetch(`http://localhost:5000/reminders/${billId}`, {
+      const deleteRes = await fetch(getAPIUrl(`/reminders/${billId}`), {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });
