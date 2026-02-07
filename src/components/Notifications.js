@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
-
-const API_BASE =
-  process.env.REACT_APP_API_URL || 'https://money-manager-backend-kgp2.onrender.com';
+import { getAPIUrl } from '../config';
 
 export default function Notifications({ onClose, isVisible = true, onCountUpdate }) {
   const [items, setItems] = useState([]);
@@ -20,10 +18,10 @@ export default function Notifications({ onClose, isVisible = true, onCountUpdate
       let billAlerts = [];
 
       const [notifRes, remindersRes] = await Promise.allSettled([
-        fetch(`${API_BASE}/notifications`, {
+        fetch(getAPIUrl('/notifications'), {
           headers: { Authorization: `Bearer ${token}` }
         }),
-        fetch(`${API_BASE}/reminders`, {
+        fetch(getAPIUrl('/reminders'), {
           headers: { Authorization: `Bearer ${token}` }
         })
       ]);
@@ -114,7 +112,7 @@ export default function Notifications({ onClose, isVisible = true, onCountUpdate
   const markRead = async id => {
     try {
       const token = localStorage.getItem('token');
-      await fetch(`${API_BASE}/notifications/read/${id}`, {
+      await fetch(getAPIUrl(`/notifications/read/${id}`), {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}` }
       });
